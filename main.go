@@ -15,10 +15,11 @@ type App struct {
 }
 
 func NewApp() (app *App) {
-	app = new(App)
-	app.wg = new(sync.WaitGroup)
-	app.done = make(chan bool, 1)
-	app.Data = make(chan string, 100)
+	app = &App{
+		wg:   &sync.WaitGroup{},
+		done: make(chan bool, 1),
+		Data: make(chan string, 100),
+	}
 	return app
 }
 
